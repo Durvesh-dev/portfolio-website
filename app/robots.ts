@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/private/'],
       },
     ],
-    sitemap: 'https://durveshbhadgaonkar.vercel.app/sitemap.xml',
+    sitemap: 'https://durvesh-bhadgaonkar.vercel.app/sitemap.xml',
   }
 }
