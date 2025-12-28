@@ -94,8 +94,6 @@ npm start
 
 This project is open source and available under the MIT License.
 
-## 🤝 Connect With Me
-
 Feel free to reach out for collaborations, opportunities, or just to say hi!
 
 ---
