@@ -90,9 +90,11 @@ npm start
 - ✅ Performance optimized
 - ✅ Mobile responsive
 
-## 📄 License
+## 📄 Copyright
 
-This project is open source and available under the MIT License.
+© 2025 Durvesh Bhadgaonkar. All rights reserved.
+
+This portfolio website is personal property. Please do not copy or redistribute without permission.
 
 Feel free to reach out for collaborations, opportunities, or just to say hi!
 
