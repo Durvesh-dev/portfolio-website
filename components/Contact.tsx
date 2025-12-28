@@ -35,8 +35,8 @@ export default function Contact() {
     {
       icon: FaPhone,
       title: 'Phone',
-      value: '+91 80074 99567',
-      href: 'tel:+918007499567',
+      value: '+91 80974 99567',
+      href: 'tel:+918097499567',
       color: 'from-green-500 to-emerald-500',
     },
   ]
@@ -141,7 +141,7 @@ export default function Contact() {
               </motion.a>
               
               <motion.a
-                href="tel:+918007499567"
+                href="tel:+918097499567"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-primary-500 text-primary-400 hover:bg-primary-500/10 font-semibold rounded-lg transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-primary-500/30"
