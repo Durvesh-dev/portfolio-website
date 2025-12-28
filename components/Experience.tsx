@@ -17,10 +17,10 @@ export default function Experience() {
       location: 'Mumbai, Maharashtra',
       achievements: [
         'Academic Performance: Sem3 - 10.0, Sem4 - 9.41, Sem5 - 9.6 (Avg SGPI: 9.67/10.0)',
-        'Developed Solar Panel Optimization System as Final Year Project using ESP32 and IoT',
         'Built blockchain-based mobile payment application with smart contracts on Polygon',
         'Created crop disease detection app using TensorFlow and deep learning models',
         'Active participant in hackathons and technical competitions',
+        'Smart India Hackathon 2023 Finalist - AICTE Online Meeting Platform',
       ],
       technologies: ['IoT', 'Blockchain', 'React Native', 'TensorFlow', 'Node.js', 'Python'],
       color: 'blue',
@@ -47,12 +47,12 @@ export default function Experience() {
       location: 'Mumbai, Maharashtra',
       achievements: [
         'Graduated with excellent academic performance of 88.86%',
+        'Developed Solar Panel Optimization System as Final Year Project using ESP32 and IoT',
         'Built strong foundation in programming languages: C++, Java, Python, JavaScript',
         'Developed multiple web applications and mobile apps during coursework',
         'Learned database management, networking, and software engineering principles',
-        'Participated in technical events, workshops, and coding competitions',
       ],
-      technologies: ['C++', 'Java', 'Python', 'Web Development', 'Database', 'Networking'],
+      technologies: ['ESP32', 'IoT', 'C++', 'Java', 'Python', 'Android', 'Web Development'],
       color: 'purple',
     },
   ]
