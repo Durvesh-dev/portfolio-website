@@ -1,0 +1,29 @@
+To create your OG image (1200x630px):
+
+Option 1 - Use Canva (Free):
+1. Go to canva.com
+2. Create custom size: 1200 x 630 px
+3. Add your name, title "Full Stack Developer", VIT Mumbai logo
+4. Use gradient background (blue/purple)
+5. Download as PNG
+6. Rename to "og-image.png"
+7. Place in /public/ folder
+
+Option 2 - Quick Online Tool:
+- Use: https://ogimage.gallery
+- Or: https://www.opengraph.xyz
+
+Template text:
+---
+Durvesh Bhadgaonkar
+Full Stack Developer | Mobile App Developer
+VIT Mumbai | SGPI 9.67 | CCNA Certified
+Smart India Hackathon Finalist
+---
+
+Colors to use:
+- Background: #0ea5e9 to #3b82f6 gradient
+- Text: White
+- Accent: #a855f7
+
+After creating, replace this file with og-image.png

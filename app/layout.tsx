@@ -81,9 +81,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
-    // bing: 'your-bing-verification-code',
+    google: 'verification_token_here', // Add after Google Search Console verification
   },
   alternates: {
     canonical: 'https://durveshbhadgaonkar.vercel.app',
