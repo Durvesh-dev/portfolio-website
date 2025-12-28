@@ -1,0 +1,22 @@
+📄 ADD YOUR RESUME HERE
+
+To enable the "Download Resume" button:
+
+1. Create or export your resume as a PDF file
+2. Name it exactly: resume.pdf
+3. Place it in this folder: c:\Users\ASUS\portfolio webiste\public\
+4. The file should be: public/resume.pdf
+
+After adding:
+git add public/resume.pdf
+git commit -m "Add resume PDF"
+git push
+
+The download button is already added to your Hero section!
+It will download as: Durvesh_Bhadgaonkar_Resume.pdf
+
+Tips for your resume:
+- Keep it 1-2 pages
+- Include: Education (VIT Mumbai, SGPI 9.67), Projects, Skills, Achievements
+- Mention: Smart India Hackathon, CCNA, Cybersecurity Internship
+- Use professional template from: Canva, Overleaf, or resumake.io
