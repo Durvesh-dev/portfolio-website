@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, ShieldCheck } from 'lucide-react'
+import { Award, ShieldCheck, ShieldAlert, Database, Activity, Send, GitBranch } from 'lucide-react'
 
 export default function Skills() {
   const coreSkills = [
@@ -18,7 +18,11 @@ export default function Skills() {
   ]
 
   const securityTools = [
-    'Burp Suite', 'SQLMap', 'Wireshark', 'Postman', 'Git'
+    { name: 'Burp Suite', icon: ShieldAlert },
+    { name: 'SQLMap', icon: Database },
+    { name: 'Wireshark', icon: Activity },
+    { name: 'Postman', icon: Send },
+    { name: 'Git', icon: GitBranch }
   ]
 
   const achievements = [
@@ -73,9 +77,10 @@ export default function Skills() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.3, delay: index * 0.05, ease: "easeOut" }}
-                className="px-3 py-1.5 text-xs font-medium bg-secondary text-secondary-foreground rounded-md border border-border"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-secondary text-secondary-foreground rounded-md border border-border hover:bg-muted transition-colors cursor-default"
               >
-                {tool}
+                <tool.icon className="w-3.5 h-3.5 text-muted-foreground" />
+                {tool.name}
               </motion.span>
             ))}
           </div>
