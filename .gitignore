@@ -48,6 +48,12 @@ next-env.d.ts
 *.swo
 *~
 
+# Build scripts & utilities
+generate-favicons.js
+Durvesh-Resume.pdf
+image.png
+latexcode.txt
+
 # OS Files
 .DS_Store
 .DS_Store?

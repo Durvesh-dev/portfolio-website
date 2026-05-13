@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#000000"/>
+  
+  <!-- Rounded square container -->
+  <rect x="64" y="64" width="384" height="384" rx="48" fill="#000000" stroke="#ffffff" stroke-width="4"/>
+  
+  <!-- "DB" text -->
+  <text 
+    x="256" 
+    y="340" 
+    font-family="system-ui, -apple-system, sans-serif" 
+    font-size="220" 
+    font-weight="700" 
+    fill="#ffffff" 
+    text-anchor="middle" 
+    letter-spacing="-8"
+    dominant-baseline="middle"
+  >DB</text>
+</svg>
