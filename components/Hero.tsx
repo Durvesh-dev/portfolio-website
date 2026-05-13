@@ -1,248 +1,129 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
 
 export default function Hero() {
-  const [text, setText] = useState('')
+  const [roleText, setRoleText] = useState('')
   const roles = [
-    'Full Stack Developer',
-    'Mobile App Developer',
-    'Cybersecurity Enthusiast',
-    'IoT Developer'
+    'Full Stack Developer.',
+    'Frontend Engineer.',
+    'Cybersecurity Researcher.',
   ]
   const [roleIndex, setRoleIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
 
+  // Smooth typing effect
   useEffect(() => {
     const currentRole = roles[roleIndex]
     const timeout = setTimeout(() => {
-      if (!isDeleting && text === currentRole) {
-        setTimeout(() => setIsDeleting(true), 1500)
-      } else if (isDeleting && text === '') {
+      if (!isDeleting && roleText === currentRole) {
+        setTimeout(() => setIsDeleting(true), 2500)
+      } else if (isDeleting && roleText === '') {
         setIsDeleting(false)
         setRoleIndex((prev) => (prev + 1) % roles.length)
       } else if (isDeleting) {
-        setText(currentRole.substring(0, text.length - 1))
+        setRoleText(currentRole.substring(0, roleText.length - 1))
       } else {
-        setText(currentRole.substring(0, text.length + 1))
+        setRoleText(currentRole.substring(0, roleText.length + 1))
       }
-    }, isDeleting ? 50 : 150)
+    }, isDeleting ? 30 : 80)
 
     return () => clearTimeout(timeout)
-  }, [text, isDeleting, roleIndex])
+  }, [roleText, isDeleting, roleIndex])
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 grid-background opacity-20"></div>
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-primary-500 rounded-full"
-            initial={{
-              x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1920,
-              y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080,
-              scale: 0,
-            }}
-            animate={{
-              y: [null, typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 1080],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-primary-400 text-lg mb-4 font-mono"
-            >
-              Hi, my name is
-            </motion.p>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-5xl md:text-7xl font-bold mb-4"
-            >
-              <span className="gradient-text">Durvesh Bhadgaonkar</span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-3xl md:text-4xl text-gray-400 mb-6 h-12"
-            >
-              {text}
-              <span className="animate-pulse">|</span>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="text-gray-400 text-lg md:text-xl mb-8 max-w-xl leading-relaxed"
-            >
-              Software developer building practical, scalable, and user-centric applications 
-              across web, mobile, and IoT. Specialized in React Native, Node.js, and cybersecurity 
-              with hands-on experience. Passionate about solving real problems through 
-              thoughtful design, automation, and innovation.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row flex-wrap gap-4 mb-8"
-            >
-              <a
-                href="#projects"
-                className="group relative px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-500 hover:from-primary-600 hover:to-blue-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary-500/50 text-center"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  View My Work
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </span>
-              </a>
-
-              <a
-                href="/resume.pdf"
-                download="Durvesh_Bhadgaonkar_Resume.pdf"
-                className="group px-8 py-4 border-2 border-primary-500 text-primary-400 hover:bg-primary-500 hover:text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-500/30 text-center backdrop-blur-sm"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Download Resume
-                </span>
-              </a>
-
-              <a
-                href="#contact"
-                className="px-8 py-4 border-2 border-gray-600 text-gray-300 hover:border-primary-500 hover:text-primary-400 font-semibold rounded-lg transition-all duration-300 hover:scale-105 text-center backdrop-blur-sm"
-              >
-                Get In Touch
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex gap-4 flex-wrap"
-            >
-              {[
-                { icon: FaGithub, href: 'https://github.com/Durvesh-dev', label: 'GitHub' },
-                { icon: FaLinkedin, href: 'https://www.linkedin.com/in/durvesh-bhadgaonkar', label: 'LinkedIn' },
-                { icon: FaTwitter, href: 'https://twitter.com/durvesh000', label: 'Twitter' },
-                { icon: FaEnvelope, href: 'mailto:durveshbhadgaonkar19@gmail.com', label: 'Email' },
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2, color: '#0ea5e9' }}
-                  className="text-2xl text-gray-400 hover:text-primary-400 transition-colors duration-300"
-                >
-                  <social.icon />
-                </motion.a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Right Content - Code Window */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden md:block"
-          >
-            <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="glass rounded-2xl p-6 shadow-2xl border border-primary-500/20 hover:border-primary-500/40 transition-all duration-300"
-            >
-              <div className="flex gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <pre className="text-sm font-mono overflow-x-auto">
-                <code className="text-gray-300">
-                  <span className="text-purple-400">const</span>{' '}
-                  <span className="text-blue-400">developer</span> = {'{\n'}
-                  {'  '}<span className="text-cyan-400">name</span>:{' '}
-                  <span className="text-green-400">&apos;Durvesh Bhadgaonkar&apos;</span>,{'\n'}
-                  {'  '}<span className="text-cyan-400">location</span>:{' '}
-                  <span className="text-green-400">&apos;Mumbai, India&apos;</span>,{'\n'}
-                  {'  '}<span className="text-cyan-400">education</span>:{' '}
-                  <span className="text-green-400">&apos;B.Tech IT @ VIT&apos;</span>,{'\n'}
-                  {'  '}<span className="text-cyan-400">sgpi</span>:{' '}
-                  <span className="text-orange-400">9.67</span>,{'\n'}
-                  {'  '}<span className="text-cyan-400">skills</span>: [{'\n'}
-                  {'    '}<span className="text-green-400">&apos;React Native&apos;</span>,{'\n'}
-                  {'    '}<span className="text-green-400">&apos;Node.js&apos;</span>,{'\n'}
-                  {'    '}<span className="text-green-400">&apos;Python&apos;</span>,{'\n'}
-                  {'    '}<span className="text-green-400">&apos;IoT & ESP32&apos;</span>,{'\n'}
-                  {'    '}<span className="text-green-400">&apos;Cybersecurity&apos;</span>,{'\n'}
-                  {'  '}],{'\n'}
-                  {'  '}<span className="text-cyan-400">certifications</span>: [{'\n'}
-                  {'    '}<span className="text-green-400">&apos;CCNA&apos;</span>,{'\n'}
-                  {'  '}],{'\n'}
-                  {'  '}<span className="text-cyan-400">hireable</span>:{' '}
-                  <span className="text-orange-400">true</span>,{'\n'}
-                  {'  '}<span className="text-cyan-400">openToInternships</span>:{' '}
-                  <span className="text-orange-400">true</span>,{'\n'}
-                  {'};'}
-                </code>
-              </pre>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Scroll Indicator */}
+    <section id="home" className="pt-32 md:pt-48 w-full flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+      {/* Left Content */}
+      <motion.div 
+        className="flex-1 w-full max-w-2xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} // smooth spring-like ease
+      >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          transition={{ delay: 0.3, duration: 1 }}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card mb-8 shadow-sm"
         >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-primary-400 rounded-full flex justify-center pt-2"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-2 bg-primary-400 rounded-full"
-            />
-          </motion.div>
+          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="text-xs font-medium text-muted-foreground">Available for new opportunities</span>
         </motion.div>
-      </div>
+
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-semibold tracking-tight text-foreground mb-6 leading-[1.05]">
+          Durvesh<br />Bhadgaonkar
+        </h1>
+        
+        <div className="h-10 sm:h-12 flex items-center mb-6">
+          <h2 className="text-xl sm:text-2xl text-muted-foreground font-medium">
+            {roleText}
+            <motion.span 
+              animate={{ opacity: [1, 0] }} 
+              transition={{ repeat: Infinity, duration: 0.9 }}
+              className="inline-block w-[2px] h-6 sm:h-7 bg-muted-foreground ml-1 align-middle"
+            />
+          </h2>
+        </div>
+
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg mb-10 text-balance">
+          I build fast, responsive, and secure web experiences. Combining a keen eye for design with robust backend architecture.
+        </p>
+
+        <div className="flex flex-wrap items-center gap-4">
+          <a 
+            href="#projects"
+            className="h-12 px-6 bg-foreground text-background font-medium rounded-lg flex items-center justify-center hover:bg-white/90 transition-all hover:scale-[1.02] active:scale-[0.98] text-sm shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+          >
+            Explore Projects
+          </a>
+          <a 
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 px-6 bg-card text-foreground font-medium rounded-lg flex items-center justify-center hover:bg-muted transition-all hover:scale-[1.02] active:scale-[0.98] text-sm border border-border"
+          >
+            Download Resume
+          </a>
+        </div>
+      </motion.div>
+
+      {/* Right Content - Elegant Code Card */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full lg:w-5/12 flex justify-center lg:justify-end perspective-[1000px]"
+      >
+        <div className="w-full max-w-md rounded-2xl border border-border bg-[#111] shadow-2xl overflow-hidden rotate-y-[-5deg] rotate-x-[5deg] hover:rotate-y-0 hover:rotate-x-0 transition-transform duration-700 ease-out">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-[#161616]">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50" />
+            </div>
+            <div className="mx-auto text-[10px] font-mono text-muted-foreground tracking-wider">app.tsx</div>
+          </div>
+          <div className="p-6 font-mono text-sm leading-loose text-muted-foreground/80 overflow-x-auto">
+            <span className="text-purple-400">import</span> {'{'} Developer {'}'} <span className="text-purple-400">from</span> <span className="text-green-400">'@durvesh/core'</span>
+            <br/><br/>
+            <span className="text-purple-400">const</span> profile = {'{'}
+            <br/>&nbsp;&nbsp;name: <span className="text-green-400">'Durvesh Bhadgaonkar'</span>,
+            <br/>&nbsp;&nbsp;skills: [<span className="text-green-400">'React'</span>, <span className="text-green-400">'Node.js'</span>, <span className="text-green-400">'Security'</span>],
+            <br/>&nbsp;&nbsp;passion: <span className="text-green-400">'Building scalable web apps'</span>
+            <br/>{'}'}
+            <br/><br/>
+            <span className="text-purple-400">export default function</span> <span className="text-blue-400">App</span>() {'{'}
+            <br/>&nbsp;&nbsp;<span className="text-purple-400">return</span> (
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="text-blue-400">Developer</span> 
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-400">profile</span>={'{'}profile{'}'} 
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-400">available</span>={'{'}<span className="text-orange-400">true</span>{'}'} 
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;/&gt;
+            <br/>&nbsp;&nbsp;)
+            <br/>{'}'}
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }

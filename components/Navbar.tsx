@@ -1,119 +1,82 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > 20)
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact']
+      const scrollPos = window.scrollY + 200
+      for (const id of [...sections].reverse()) {
+        const el = document.getElementById(id)
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(id)
+          break
+        }
+      }
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navItems = [
-    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ]
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-3 shadow-lg shadow-primary-500/10' : 'bg-transparent py-6'
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
+        scrolled ? 'bg-background/80 backdrop-blur-md border-border py-4' : 'bg-transparent border-transparent py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-2xl font-bold cursor-pointer group"
-          >
-            <Link href="#home" className="flex items-center gap-2">
-              <span className="text-primary-400 group-hover:text-primary-300 transition-colors">&lt;</span>
-              <span className="gradient-text-blue group-hover:scale-105 transition-transform inline-block">Durvesh</span>
-              <span className="text-primary-400 group-hover:text-primary-300 transition-colors">/&gt;</span>
-            </Link>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-1">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-              >
-                <Link
-                  href={item.href}
-                  className="px-4 py-2 text-gray-300 hover:text-primary-400 transition-colors duration-300 relative group"
-                >
-                  <span className="relative z-10">{item.name}</span>
-                  <span className="absolute inset-0 bg-primary-500/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                </Link>
-              </motion.div>
-            ))}
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 md:px-12 flex items-center justify-between">
+        <Link href="#home" className="flex items-center gap-2 group">
+          <div className="w-8 h-8 rounded bg-foreground text-background flex items-center justify-center font-heading font-bold text-sm tracking-tighter group-hover:bg-accent group-hover:text-foreground transition-colors duration-300">
+            DB
           </div>
+          <span className="text-sm font-heading font-medium text-foreground tracking-wide group-hover:opacity-80 transition-opacity hidden sm:block">
+            Durvesh.
+          </span>
+        </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-300 hover:text-primary-400 focus:outline-none transition-colors duration-300 p-2 rounded-lg hover:bg-primary-500/10"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        <nav className="hidden sm:flex items-center gap-6">
+          {navItems.map((item) => (
+            <Link 
+              key={item.name}
+              href={item.href} 
+              className={`text-sm font-medium transition-colors ${
+                activeSection === item.href.slice(1) 
+                  ? 'text-foreground' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
-              {mobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
+              {item.name}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 glass rounded-lg"
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block px-4 py-3 text-gray-300 hover:text-primary-400 hover:bg-primary-500/10 transition-all duration-300"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </motion.div>
-        )}
+        <a 
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden sm:inline-flex text-xs font-medium bg-foreground text-background px-4 py-2 rounded hover:bg-white/90 transition-colors"
+        >
+          Resume
+        </a>
+
+        {/* Minimal Mobile Menu Toggle - Just text for simplicity */}
+        <a href="#contact" className="sm:hidden text-sm font-medium text-muted-foreground hover:text-foreground">
+          Contact
+        </a>
       </div>
-    </motion.nav>
+    </header>
   )
 }

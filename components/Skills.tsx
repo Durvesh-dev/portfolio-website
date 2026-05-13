@@ -1,175 +1,114 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { FaCode, FaServer, FaDatabase, FaTools } from 'react-icons/fa'
+import { Award, ShieldCheck } from 'lucide-react'
 
 export default function Skills() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+  const coreSkills = [
+    { name: 'React', icon: 'react/react-original.svg' },
+    { name: 'Node.js', icon: 'nodejs/nodejs-original.svg' },
+    { name: 'Python', icon: 'python/python-original.svg' },
+    { name: 'JavaScript', icon: 'javascript/javascript-original.svg' },
+    { name: 'Java', icon: 'java/java-original.svg' },
+    { name: 'AWS', icon: 'amazonwebservices/amazonwebservices-plain-wordmark.svg' },
+    { name: 'Docker', icon: 'docker/docker-original.svg' },
+    { name: 'MongoDB', icon: 'mongodb/mongodb-original.svg' },
+    { name: 'MySQL', icon: 'mysql/mysql-original.svg' },
+    { name: 'Flask', icon: 'flask/flask-original.svg' },
+  ]
 
-  const skillCategories = [
-    {
-      icon: FaCode,
-      title: 'Languages & Core',
-      color: 'from-blue-500 to-cyan-500',
-      skills: [
-        'C/C++',
-        'Java',
-        'Python',
-        'JavaScript',
-        'SQL',
-        'HTML/CSS',
-        'Solidity',
-        'ESP32 (IoT)',
-      ],
-    },
-    {
-      icon: FaServer,
-      title: 'Frameworks & Libraries',
-      color: 'from-green-500 to-emerald-500',
-      skills: [
-        'ReactJS',
-        'React Native',
-        'NodeJS',
-        'ExpressJS',
-        'Flask',
-        'TensorFlow',
-        'OpenCV',
-        'Android Development',
-      ],
-    },
-    {
-      icon: FaDatabase,
-      title: 'Databases & Tools',
-      color: 'from-purple-500 to-pink-500',
-      skills: [
-        'MongoDB',
-        'MySQL',
-        'Docker',
-        'Postman',
-        'Git / GitHub',
-        'Burp Suite',
-        'SQLMap',
-        'VS Code',
-      ],
-    },
-    {
-      icon: FaTools,
-      title: 'Soft Skills & Focus Areas',
-      color: 'from-orange-500 to-red-500',
-      skills: [
-        'Leadership',
-        'Collaboration',
-        'Analytical Thinking',
-        'Problem Solving',
-        'Cybersecurity',
-        'Blockchain Basics',
-        'IoT Systems',
-        'Mobile Development',
-      ],
-    },
+  const securityTools = [
+    'Burp Suite', 'SQLMap', 'Wireshark', 'Postman', 'Git'
+  ]
+
+  const achievements = [
+    'Smart India Hackathon 2023 Finalist',
+    'HackBuild Google Hackathon — Top 20',
+    'Cisco Certified Network Associate (CCNA)',
+    'Cyber Security Certification — SCF Ltd',
   ]
 
   return (
-    <section id="skills" ref={ref} className="py-20 relative">
-      <div className="absolute inset-0 grid-background opacity-10"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-primary-400 font-mono text-xl">02. </span>
-            <span className="gradient-text-blue">Skills & Technologies</span>
-          </h2>
-          <div className="h-1 w-32 bg-gradient-to-r from-primary-500 to-blue-500"></div>
-        </motion.div>
+    <section id="skills" className="w-full">
+      <div className="mb-12">
+        <h2 className="text-3xl font-heading font-medium text-foreground mb-4">Skills</h2>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="glass rounded-2xl p-8 hover:border-primary-500/50 transition-all duration-300 group"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className={`p-4 rounded-xl bg-gradient-to-br ${category.color} group-hover:scale-110 transition-transform duration-300`}>
-                  <category.icon className="text-3xl text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-white group-hover:text-primary-400 transition-colors">
-                  {category.title}
-                </h3>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.3 + skillIndex * 0.05 }}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-2 text-gray-300 hover:text-primary-400 transition-colors cursor-pointer"
-                  >
-                    <svg className="w-2 h-2 text-primary-400" viewBox="0 0 6 6" fill="currentColor">
-                      <circle cx="3" cy="3" r="3" />
-                    </svg>
-                    <span className="text-sm">{skill}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Achievements & Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-16 glass rounded-2xl p-8"
-        >
-          <h3 className="text-2xl font-bold mb-6 text-center gradient-text-blue">
-            Achievements & Certifications
-          </h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            {[
-              { title: 'Smart India Hackathon 2023 Finalist', icon: '🏆', desc: 'AICTE Online Meeting Platform' },
-              { title: 'Tantravihar State-Level Competition 2025', icon: '🥇', desc: 'Decentralized Payment System using Blockchain' },
-              { title: 'HackBuild Google Hackathon', icon: '🚀', desc: 'Decentralized Notes Marketplace - Top 20 nationwide' },
-              { title: 'Cisco Certified Network Associate (CCNA)', icon: '🎓', desc: 'Networking certification' },
-              { title: 'TechFiesta PICT International Hackathon', icon: '💻', desc: 'Participation' },
-              { title: 'State-Level Final Year Project Competition', icon: '💡', desc: 'Participation' },
-              { title: 'Internship at Secure Cyber Future Ltd', icon: '🔒', desc: 'Cybersecurity Research' },
-            ].map((achievement, index) => (
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+        
+        {/* Core Tech Stack (Icons) */}
+        <div className="lg:col-span-7">
+          <h3 className="text-lg font-heading font-medium text-foreground mb-6">Tech Stack</h3>
+          <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mb-8">
+            {coreSkills.map((skill, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 1 + index * 0.05 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="px-6 py-4 bg-gradient-to-r from-primary-500/20 to-blue-500/20 border border-primary-500/30 rounded-xl hover:from-primary-500/30 hover:to-blue-500/30 hover:border-primary-400 transition-all duration-300"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
+                className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl border border-border bg-card hover:bg-muted/30 hover:border-border/80 transition-all group"
               >
-                <div className="flex items-start gap-3">
-                  <span className="text-3xl">{achievement.icon}</span>
-                  <div>
-                    <h4 className="text-primary-300 font-semibold text-sm mb-1">{achievement.title}</h4>
-                    <p className="text-gray-400 text-xs">{achievement.desc}</p>
-                  </div>
+                <div className="w-10 h-10 relative grayscale group-hover:grayscale-0 transition-all duration-300">
+                  <img 
+                    src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}`}
+                    alt={skill.name}
+                    className="w-full h-full object-contain drop-shadow-sm"
+                  />
                 </div>
+                <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                  {skill.name}
+                </span>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+
+          {/* Security & Tools (Chips) */}
+          <h3 className="text-lg font-heading font-medium text-foreground mb-4">Security & Tools</h3>
+          <div className="flex flex-wrap gap-2">
+            {securityTools.map((tool, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.3, delay: index * 0.05, ease: "easeOut" }}
+                className="px-3 py-1.5 text-xs font-medium bg-secondary text-secondary-foreground rounded-md border border-border"
+              >
+                {tool}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+
+        {/* Achievements List */}
+        <div className="lg:col-span-5">
+          <h3 className="text-lg font-heading font-medium text-foreground mb-6">Achievements</h3>
+          <div className="flex flex-col gap-4">
+            {achievements.map((ach, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
+                className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:bg-muted/30 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
+                  {index < 2 ? (
+                    <Award className="w-5 h-5 text-accent" />
+                  ) : (
+                    <ShieldCheck className="w-5 h-5 text-accent" />
+                  )}
+                </div>
+                <span className="text-sm font-medium text-foreground leading-snug">
+                  {ach}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   )
