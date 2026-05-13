@@ -47,9 +47,9 @@ export default function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
-                className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl border border-border bg-card hover:bg-muted/30 hover:border-border/80 transition-all group"
+                className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl border border-border bg-card hover:bg-muted/30 hover:border-border/80 transition-all group hover:-translate-y-1"
               >
-                <div className="w-10 h-10 relative grayscale group-hover:grayscale-0 transition-all duration-300">
+                <div className="w-10 h-10 relative transition-transform duration-300 group-hover:scale-110">
                   <img 
                     src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}`}
                     alt={skill.name}
