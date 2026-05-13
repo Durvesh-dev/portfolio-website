@@ -29,7 +29,7 @@ export default function Skills() {
     'Smart India Hackathon 2023 Finalist',
     'HackBuild Google Hackathon — Top 20',
     'Cisco Certified Network Associate (CCNA)',
-    'Cyber Security Certification — SCF Ltd',
+    'Cyber Security Internship — SCF Ltd',
   ]
 
   return (
